@@ -1,0 +1,1141 @@
+﻿<Window x:Class="MMNElectric.Views.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MMNElectric.Views"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        mc:Ignorable="d"
+        Title="{Binding Path=AppName}"
+        Height="700"
+        Width="1050"
+        Foreground="Wheat"
+        Background="SeaGreen"
+        FontSize="16"
+        MinWidth="1050"
+        MinHeight="700"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Height"
+                    Value="22"></Setter>
+            <Setter Property="Foreground"
+                    Value="Azure"></Setter>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Height"
+                    Value="22"></Setter>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Height"
+                    Value="22"></Setter>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Background"
+                    Value="Transparent"></Setter>
+            <Setter Property="Foreground"
+                    Value="Azure"></Setter>
+            <Setter Property="BorderBrush"
+                    Value="Azure"></Setter>
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Center"></Setter>
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center"></Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver"
+                         Value="True">
+                    <Setter Property="Background"
+                            Value="PowderBlue"></Setter>
+                    <Setter Property="Foreground"
+                            Value="Black"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type DatePickerTextBox}">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <TextBox x:Name="PART_TextBox"
+                                 Text="{Binding Path=SelectedDate, StringFormat = 'dd.MM.yyyy', 
+                                 RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+
+        <GroupBox Header="{Binding Path=GrpFilterByDate}"
+                  Grid.Column="1"
+                  Grid.Row="1"
+                  Margin="5"
+                  Height="auto"
+                  Width="auto"
+                  FontSize="14"
+                  Foreground="Wheat"
+                  MinWidth="180">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="10" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="10" />
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="LblStartDate"
+                           Text="{Binding Path=LblStartDate}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,3"
+                           Grid.Column="1"
+                           Grid.Row="1" />
+
+                <TextBlock x:Name="LblEndDate"
+                           Text="{Binding Path=LblEndDate}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,3"
+                           Grid.Column="1"
+                           Grid.Row="2" />
+
+                <DatePicker x:Name="CalStartDate"
+                            MinWidth="110"
+                            SelectedDate="{Binding StartDate}"
+                            HorizontalAlignment="Right"
+                            Margin="0,0,15,3"
+                            Grid.Column="2"
+                            Grid.Row="1"
+                            Text="Now" />
+
+                <DatePicker x:Name="CalEndDate"
+                            MinWidth="110"
+                            SelectedDate="{Binding EndDate}"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Right"
+                            Margin="0,0,15,3"
+                            Grid.Column="2"
+                            Grid.Row="2" />
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="{Binding Path=GrpLiveData}"
+                  Grid.Column="2"
+                  Grid.Row="1"
+                  Margin="5"
+                  Height="auto"
+                  Width="auto"
+                  FontSize="14"
+                  Foreground="Wheat"
+                  MinWidth="180">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="10" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="5" />
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="Testing"
+                           Text="{Binding Path=Testing}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="1"
+                           Grid.Row="1" />
+                <TextBlock x:Name="Pota1ReadTFromPLC"
+                           Text="{Binding Path=Pota1ReadTFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="1"
+                           Grid.Row="2" />
+                <TextBlock x:Name="Pota1TFromPLC"
+                           Text="{Binding Path=Pota1TFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="2"
+                           Grid.Row="2" />
+                <TextBlock x:Name="Pota1ReadRpmFromPLC"
+                           Text="{Binding Path=Pota1ReadRpmFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="3"
+                           Grid.Row="2" />
+                <TextBlock x:Name="Pota1RpmFromPLC"
+                           Text="{Binding Path=Pota1RpmFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="4"
+                           Grid.Row="2" />
+
+                <TextBlock x:Name="Pota2ReadTFromPLC"
+                           Text="{Binding Path=Pota2ReadTFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="1"
+                           Grid.Row="3" />
+                <TextBlock x:Name="Pota2TFromPLC"
+                           Text="{Binding Path=Pota2TFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="2"
+                           Grid.Row="3" />
+                <TextBlock x:Name="Pota2ReadRpmFromPLC"
+                           Text="{Binding Path=Pota2ReadRpmFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="3"
+                           Grid.Row="3" />
+                <TextBlock x:Name="Pota2RpmFromPLC"
+                           Text="{Binding Path=Pota2RpmFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="4"
+                           Grid.Row="3" />
+
+                <TextBlock x:Name="Pota3ReadTFromPLC"
+                           Text="{Binding Path=Pota3ReadTFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="1"
+                           Grid.Row="4" />
+                <TextBlock x:Name="Pota3TFromPLC"
+                           Text="{Binding Path=Pota3TFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="2"
+                           Grid.Row="4" />
+                <TextBlock x:Name="Pota3ReadRpmFromPLC"
+                           Text="{Binding Path=Pota3ReadRpmFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="3"
+                           Grid.Row="4" />
+                <TextBlock x:Name="Pota3RpmFromPLC"
+                           Text="{Binding Path=Pota3RpmFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="4"
+                           Grid.Row="4" />
+
+                <TextBlock x:Name="Pota4ReadTFromPLC"
+                           Text="{Binding Path=Pota4ReadTFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="1"
+                           Grid.Row="5" />
+                <TextBlock x:Name="Pota4TFromPLC"
+                           Text="{Binding Path=Pota4TFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="2"
+                           Grid.Row="5" />
+                <TextBlock x:Name="Pota4ReadRpmFromPLC"
+                           Text="{Binding Path=Pota4ReadRpmFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="3"
+                           Grid.Row="5" />
+                <TextBlock x:Name="Pota4RpmFromPLC"
+                           Text="{Binding Path=Pota4RpmFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="4"
+                           Grid.Row="5" />
+
+                <TextBlock x:Name="BurnerReadFromPLC"
+                           Text="{Binding Path=BurnerReadFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="1"
+                           Grid.Row="6" />
+                <TextBlock x:Name="BurnerExpenseGasFromPLC"
+                           Text="{Binding Path=BurnerExpenseGasFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="2"
+                           Grid.Row="6" />
+                <TextBlock x:Name="BurnerExpenseOxFromPLC"
+                           Text="{Binding Path=BurnerExpenseOxFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="3"
+                           Grid.Row="6" />
+                <TextBlock x:Name="BurnerSumExpenseGasFromPLC"
+                           Text="{Binding Path=BurnerSumExpenseGasFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="4"
+                           Grid.Row="6" />
+                <TextBlock x:Name="BurnerSumExpenseOxFromPLC"
+                           Text="{Binding Path=BurnerSumExpenseOxFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="5"
+                           Grid.Row="6" />
+                <TextBlock x:Name="BurnerPressureGasFromPLC"
+                           Text="{Binding Path=BurnerPressureGasFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="6"
+                           Grid.Row="6" />
+                <TextBlock x:Name="BurnerPressureOxFromPLC"
+                           Text="{Binding Path=BurnerPressureOxFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="7"
+                           Grid.Row="6" />
+                <TextBlock x:Name="BurnerTGasFromPLC"
+                           Text="{Binding Path=BurnerTGasFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="8"
+                           Grid.Row="6" />
+                <TextBlock x:Name="BurnerTOxFromPLC"
+                           Text="{Binding Path=BurnerTOxFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="9"
+                           Grid.Row="6" />
+
+                <TextBlock x:Name="FurnaceReadFromPLC"
+                           Text="{Binding Path=FurnaceReadFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="1"
+                           Grid.Row="7" />
+                <TextBlock x:Name="FurnaceSetpointFromPLC"
+                           Text="{Binding Path=FurnaceSetpointFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="2"
+                           Grid.Row="7" />
+                <TextBlock x:Name="FurnaceSpeedFromPLC"
+                           Text="{Binding Path=FurnaceSpeedFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="3"
+                           Grid.Row="7" />
+
+                <TextBlock x:Name="FilterReadFromPLC"
+                           Text="{Binding Path=FilterReadFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="1"
+                           Grid.Row="8" />
+                <TextBlock x:Name="FilterTFromPLC"
+                           Text="{Binding Path=FilterTFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="2"
+                           Grid.Row="8" />
+                <TextBlock x:Name="FilterLoadFromPLC"
+                           Text="{Binding Path=FilterLoadFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="3"
+                           Grid.Row="8" />
+
+                <TextBlock x:Name="ScaleReadFromPLC"
+                           Text="{Binding Path=ScaleReadFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="1"
+                           Grid.Row="9" />
+                <TextBlock x:Name="ScaleWeightFromPLC"
+                           Text="{Binding Path=ScaleWeightFromPLC}"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,15,0"
+                           Grid.Column="2"
+                           Grid.Row="9" />
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="{Binding Path=GrpData}"
+                  Grid.Column="1"
+                  Grid.Row="2"
+                  Grid.ColumnSpan="2"
+                  Margin="5"
+                  Height="auto"
+                  Width="auto"
+                  FontSize="14"
+                  Foreground="Wheat"
+                  MinWidth="180">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="5" />
+                </Grid.RowDefinitions>
+
+                <TabControl Grid.Column="1"
+                            Grid.Row="1"
+                            Margin="5"
+                            FontSize="14">
+                    <TabItem Header="{Binding Path=Pota1}">
+                        <Grid Background="SeaGreen">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="20" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="20" />
+                            </Grid.RowDefinitions>
+
+                            <DataGrid x:Name="Pota1Data"
+                                      ItemsSource="{Binding TableDataPota1}"
+                                      CanUserResizeRows="False"
+                                      IsReadOnly="True"
+                                      CanUserReorderColumns="True"
+                                      SelectionMode="Single"
+                                      SelectionUnit="FullRow"
+                                      ColumnWidth="auto"
+                                      AlternatingRowBackground="Azure"
+                                      AutoGenerateColumns="False"
+                                      Grid.Column="1"
+                                      Grid.Row="1"
+                                      MinHeight="300">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding Path=Запис}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Id, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Дата}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Date, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Час}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Time, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Температура}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Temperature, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Обороти}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Rpm, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="{Binding Path=Pota2}">
+                        <Grid Background="SeaGreen">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="20" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="20" />
+                            </Grid.RowDefinitions>
+
+                            <DataGrid x:Name="Pota2Data"
+                                      ItemsSource="{Binding TableDataPota2}"
+                                      CanUserResizeRows="False"
+                                      IsReadOnly="True"
+                                      CanUserReorderColumns="True"
+                                      SelectionMode="Single"
+                                      SelectionUnit="FullRow"
+                                      ColumnWidth="auto"
+                                      AlternatingRowBackground="Azure"
+                                      AutoGenerateColumns="False"
+                                      Grid.Column="1"
+                                      Grid.Row="1"
+                                      MinHeight="300">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding Path=Запис}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Id, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Дата}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Date, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Час}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Time, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Температура}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Temperature, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Обороти}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Rpm, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="{Binding Path=Pota3}">
+                        <Grid Background="SeaGreen">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="20" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="20" />
+                            </Grid.RowDefinitions>
+
+                            <DataGrid x:Name="Pota3Data"
+                                      ItemsSource="{Binding TableDataPota3}"
+                                      CanUserResizeRows="False"
+                                      IsReadOnly="True"
+                                      CanUserReorderColumns="True"
+                                      SelectionMode="Single"
+                                      SelectionUnit="FullRow"
+                                      ColumnWidth="auto"
+                                      AlternatingRowBackground="Azure"
+                                      AutoGenerateColumns="False"
+                                      Grid.Column="1"
+                                      Grid.Row="1"
+                                      MinHeight="300">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding Path=Запис}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Id, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Дата}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Date, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Час}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Time, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Температура}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Temperature, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Обороти}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Rpm, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="{Binding Path=Pota4}">
+                        <Grid Background="SeaGreen">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="20" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="20" />
+                            </Grid.RowDefinitions>
+
+                            <DataGrid x:Name="Pota4Data"
+                                      ItemsSource="{Binding TableDataPota4}"
+                                      CanUserResizeRows="False"
+                                      IsReadOnly="True"
+                                      CanUserReorderColumns="True"
+                                      SelectionMode="Single"
+                                      SelectionUnit="FullRow"
+                                      ColumnWidth="auto"
+                                      AlternatingRowBackground="Azure"
+                                      AutoGenerateColumns="False"
+                                      Grid.Column="1"
+                                      Grid.Row="1"
+                                      MinHeight="300">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding Path=Запис}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Id, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Дата}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Date, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Час}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Time, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Температура}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Temperature, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Обороти}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Rpm, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="{Binding Path=Burner}">
+                        <Grid Background="SeaGreen">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="20" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="20" />
+                            </Grid.RowDefinitions>
+
+                            <DataGrid x:Name="BurnerData"
+                                      ItemsSource="{Binding TableDataBurner}"
+                                      CanUserResizeRows="False"
+                                      IsReadOnly="True"
+                                      CanUserReorderColumns="True"
+                                      SelectionMode="Single"
+                                      SelectionUnit="FullRow"
+                                      ColumnWidth="auto"
+                                      AlternatingRowBackground="Azure"
+                                      AutoGenerateColumns="False"
+                                      Grid.Column="1"
+                                      Grid.Row="1">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding Path=Запис}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Id, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Дата}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Date, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Час}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Time, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Разход_Газ}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.ExpenseGas, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Разход_Кислород}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.ExpenseOx, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Разход_Газ_Сума}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.SumExpenseGas, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Разход_Кислород_Сума}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.SumExpenseOx, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Налягане_Газ}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.PressureGas, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Налягане_Кислород}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.PressureOx, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Температура_Газ}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.TemperatureGas, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Температура_Кислород}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.TemperatureOx, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="{Binding Path=Furnace}">
+                        <Grid Background="SeaGreen">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="20" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="20" />
+                            </Grid.RowDefinitions>
+
+                            <DataGrid x:Name="FurnaceData"
+                                      ItemsSource="{Binding TableDataFurnace}"
+                                      CanUserResizeRows="False"
+                                      IsReadOnly="True"
+                                      CanUserReorderColumns="True"
+                                      SelectionMode="Single"
+                                      SelectionUnit="FullRow"
+                                      ColumnWidth="auto"
+                                      AlternatingRowBackground="Azure"
+                                      AutoGenerateColumns="False"
+                                      Grid.Column="1"
+                                      Grid.Row="1"
+                                      MinHeight="300">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding Path=Запис}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Id, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Дата}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Date, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Час}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Time, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Setpoint}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.FurnaceSetpoint, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Current}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.FurnaceSpeed, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="{Binding Path=Filter}">
+                        <Grid Background="SeaGreen">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="20" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="20" />
+                            </Grid.RowDefinitions>
+
+                            <DataGrid x:Name="FilterData"
+                                      ItemsSource="{Binding TableDataFilter}"
+                                      CanUserResizeRows="False"
+                                      IsReadOnly="True"
+                                      CanUserReorderColumns="True"
+                                      SelectionMode="Single"
+                                      SelectionUnit="FullRow"
+                                      ColumnWidth="auto"
+                                      AlternatingRowBackground="Azure"
+                                      AutoGenerateColumns="False"
+                                      Grid.Column="1"
+                                      Grid.Row="1"
+                                      MinHeight="300">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding Path=Запис}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Id, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Дата}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Date, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Час}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Time, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Температура}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Temperature, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Натоварване}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Load, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="{Binding Path=Scale}">
+                        <Grid Background="SeaGreen">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="20" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="20" />
+                            </Grid.RowDefinitions>
+
+                            <DataGrid x:Name="ScaleData"
+                                      ItemsSource="{Binding TableDataScale}"
+                                      CanUserResizeRows="False"
+                                      IsReadOnly="True"
+                                      CanUserReorderColumns="True"
+                                      SelectionMode="Single"
+                                      SelectionUnit="FullRow"
+                                      ColumnWidth="auto"
+                                      AlternatingRowBackground="Azure"
+                                      AutoGenerateColumns="False"
+                                      Grid.Column="1"
+                                      Grid.Row="1"
+                                      MinHeight="300">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding Path=Запис}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Id, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Дата}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Date, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Час}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Time, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Path=Тегло}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DataContext.Weight, 
+                                              RelativeSource={RelativeSource 
+                                            AncestorType={x:Type local:ShellView}}}" />
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </TabItem>
+
+                </TabControl>
+                <Button x:Name="ExcelExport"
+                    Height="30"
+                    Width="200"
+                    Content="Export To MS Excel"
+                    Grid.Column="1"
+                    Grid.Row="2"
+                        Click="ExcelExport_Click"/>
+            </Grid>
+        </GroupBox>
+        <Button></Button>
+    </Grid>
+</Window>
